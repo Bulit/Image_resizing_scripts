@@ -24,11 +24,10 @@ def imgResize(x, y, c):
 h = int(input('Input designated high: '))
 w = int(input('Input designated width: '))
 color = input('Input 0 for greyscale images or 1 for color images: ')
-print(type(color))
+
 while color != '1' and color != '0':
     print('Wrong input for colorscale parameter please input 0 or 1 only')
     color = input('Input 0 for greyscale images or 1 for color images: ')
-    print(type(color))
 else:
     color = int(color)
 
