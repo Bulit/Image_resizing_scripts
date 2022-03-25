@@ -2,22 +2,34 @@
 import glob
 import cv2
 
-x = int(input('Input designated high: '))
-y = int(input('Input designated width: '))
-#Get all image from path
-images = glob.glob('*.jpg')
+def imgResize(x, y, c):
+    #Get all image from path
+    images = glob.glob('*.jpg')
 
-#Iterate through all image in images
-for image in images:
-    #read image and save it to img variable, change 0 to 1 if u want resized img in color
-    img = cv2.imread(image, 0)
-    #resize img and save it to resize_image
-    resize_image = cv2.resize(img, (y,x))
-    #show image on the screen
-    cv2.imshow('Hey', resize_image)
-    #wait 2 sec
-    cv2.waitKey(2000)
-    #destroy window
-    cv2.destroyAllWindows()
-    #save resize_image with 'resized_' adnotation in name
-    cv2.imwrite('resized_'+image, resize_image)
+    #Iterate through all image in images
+    for image in images:
+        #read image and save it to img variable, change 0 to 1 if u want resized img in color
+        img = cv2.imread(image, c)
+        #resize img and save it to resize_image
+        resize_image = cv2.resize(img, (y,x))
+        #show image on the screen
+        cv2.imshow('Hey', resize_image)
+        #wait 2 sec
+        cv2.waitKey(2000)
+        #destroy window
+        cv2.destroyAllWindows()
+        #save resize_image with 'resized_' adnotation in name
+        cv2.imwrite('resized_'+image, resize_image)
+
+h = int(input('Input designated high: '))
+w = int(input('Input designated width: '))
+color = input('Input 0 for greyscale images or 1 for color images: ')
+print(type(color))
+while color != '1' and color != '0':
+    print('Wrong input for colorscale parameter please input 0 or 1 only')
+    color = input('Input 0 for greyscale images or 1 for color images: ')
+    print(type(color))
+else:
+    color = int(color)
+
+imgResize(h, w, color)
